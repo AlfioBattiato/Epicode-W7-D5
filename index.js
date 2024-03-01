@@ -37,20 +37,50 @@ function creaCard(immagine, title, descrizione) {
   // ///////////////////////////////////////
   const btnDettaglio = document.createElement("a");
   body.appendChild(btnDettaglio);
-  btnDettaglio.href="./dettagli.html"
+  btnDettaglio.href = "./dettagli.html";
   btnDettaglio.className = "btn btn-primary me-1";
   btnDettaglio.innerText = "Info";
 
   // ///////////////////////////////////////
   const btnModifica = document.createElement("a");
   body.appendChild(btnModifica);
-  btnModifica.href="./backoffice.html"
+  btnModifica.href = "./backoffice.html";
   btnModifica.className = "btn btn-success me-1";
   btnModifica.innerText = "Modifica";
-
 }
 
-creaCard("...", "titolo", "descrizione");
-creaCard("...", "titolo", "descrizione");
-creaCard("...", "titolo", "descrizione");
-creaCard("...", "titolo", "descrizione");
+const apiKey =
+  "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWUxZDNhZDRjNTllYzAwMTk5MGQ4ZGYiLCJpYXQiOjE3MDkyOTg2MDUsImV4cCI6MTcxMDUwODIwNX0.mb1tywt7mUK6KjJ7LSC14VY6TgMaADn0jFNfPfzBsKI";
+const url = "https://striveschool-api.herokuapp.com/api/product/";
+
+fetch(url, {
+  method: "GET", // è come scrivere method: method,
+  headers: {
+    Authorization: apiKey,
+    "Content-Type": "application/json",
+  },
+})
+  .then((response) => {
+    if (response.ok) {
+      return response.json();
+    } else {
+      if (response.status === 400) {
+        throw new Error("400 - Errore lato client");
+      }
+      if (response.status === 404) {
+        throw new Error("404 - Dato non trovato");
+      }
+      if (response.status === 500) {
+        throw new Error("500 - Errore lato server");
+      }
+      throw new Error("Errore nel reperimento dati");
+    }
+  })
+  .then((newAppointment) => {
+    console.log(newAppointment);
+
+    newAppointment.forEach((oggetto) => {
+      creaCard(oggetto.imageUrl, oggetto.name, oggetto.description);
+    });
+  })
+  .catch((err) => console.log(err));

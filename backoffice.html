@@ -11,45 +11,42 @@
 
 <body data-bs-theme="dark">
 
-
-
-
     <nav class="navbar bg-body-tertiary">
         <div class="container-fluid">
             <a class="navbar-brand" href="./index.html">Homepage</a>
         </div>
     </nav>
-
-
     <div class="container">
         <form>
             <div class="mb-3">
               <label for="img" class="form-label">Immagine</label>
-              <input type="text" class="form-control" id="img" placeholder="inserisci link immagine" aria-describedby="emailHelp">
-
+              <input type="text" class="form-control" id="img" placeholder="inserisci link immagine" required>
             </div>
             <div class="mb-3">
               <label for="Titolo" class="form-label">Titolo</label>
-              <input type="text" class="form-control" id="Titolo" placeholder="inserisci titolo">
+              <input type="text" class="form-control" id="Titolo" placeholder="inserisci titolo"required>
             </div>
-           
             <div class="mb-3">
               <label for="Descrizione" class="form-label">Descrizione</label>
-              <input type="text" class="form-control" id="Descrizione" placeholder="inserisci descrizione">
+              <input type="text" class="form-control" id="Descrizione" placeholder="inserisci descrizione"required>
             </div>
-           
-
+            <div class="mb-3">
+              <label for="brand" class="form-label">Brand</label>
+              <input type="text" class="form-control" id="brand" placeholder="inserisci brand"required>
+            </div>
+            <div class="mb-3">
+              <label for="prezzo" class="form-label">Prezzo</label>
+              <input type="text" class="form-control" id="prezzo" placeholder="inserisci prezzo"required>
+            </div>
             <button type="submit" class="btn btn-primary">Submit</button>
+
           </form>
     </div>
-
-
-
-
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
+
+        <script src="backoffice.js"></script>
 </body>
 
 </html>
