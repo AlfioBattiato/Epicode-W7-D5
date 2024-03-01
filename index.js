@@ -1,6 +1,20 @@
 const row = document.getElementsByClassName("row")[0];
 
-function creaCard(immagine, title, descrizione) {
+const apiKey =
+  "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWUxZDNhZDRjNTllYzAwMTk5MGQ4ZGYiLCJpYXQiOjE3MDkyOTg2MDUsImV4cCI6MTcxMDUwODIwNX0.mb1tywt7mUK6KjJ7LSC14VY6TgMaADn0jFNfPfzBsKI";
+  
+  const params = new URLSearchParams(window.location.search) // oggetto costruito a partire dai parametri nella URL es. ?agendaId=2938123
+  
+  const appointmentId = params.get("agendaId") // metodo sull'oggetto URLSearchParams che ci estrae il valore corrispondente alla chiave "agendaId" da noi scelta e applicata al link in homepage
+  
+  console.log("RESOURCE ID:", appointmentId)
+  
+  const url = "https://striveschool-api.herokuapp.com/api/product/";
+
+
+
+
+function creaCard(immagine, title, descrizione,id) {
   // ///////////////////////////////////////
   const col = document.createElement("div");
   row.appendChild(col);
@@ -10,12 +24,13 @@ function creaCard(immagine, title, descrizione) {
   const card = document.createElement("div");
   col.appendChild(card);
   card.className = "card";
-
+  card.style.height="22rem"
   // ///////////////////////////////////////
   const img = document.createElement("img");
   card.appendChild(img);
-  img.className = "card-img-top";
+  img.className = "card-img-top object-fit-cover";
   img.src = immagine;
+  img.style.height="60%";
 
   // ///////////////////////////////////////
   const body = document.createElement("div");
@@ -37,7 +52,7 @@ function creaCard(immagine, title, descrizione) {
   // ///////////////////////////////////////
   const btnDettaglio = document.createElement("a");
   body.appendChild(btnDettaglio);
-  btnDettaglio.href = "./dettagli.html";
+  btnDettaglio.href = `./dettagli.html?idProdotto=${id}`;
   btnDettaglio.className = "btn btn-primary me-1";
   btnDettaglio.innerText = "Info";
 
@@ -49,9 +64,6 @@ function creaCard(immagine, title, descrizione) {
   btnModifica.innerText = "Modifica";
 }
 
-const apiKey =
-  "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWUxZDNhZDRjNTllYzAwMTk5MGQ4ZGYiLCJpYXQiOjE3MDkyOTg2MDUsImV4cCI6MTcxMDUwODIwNX0.mb1tywt7mUK6KjJ7LSC14VY6TgMaADn0jFNfPfzBsKI";
-const url = "https://striveschool-api.herokuapp.com/api/product/";
 
 fetch(url, {
   method: "GET", // è come scrivere method: method,
@@ -80,7 +92,9 @@ fetch(url, {
     console.log(newAppointment);
 
     newAppointment.forEach((oggetto) => {
-      creaCard(oggetto.imageUrl, oggetto.name, oggetto.description);
+      creaCard(oggetto.imageUrl, oggetto.name, oggetto.description,oggetto._id);
+     
     });
   })
   .catch((err) => console.log(err));
+
