@@ -17,10 +17,15 @@
         </div>
     </nav>
     <div class="container">
+      <h1>Modalità inserimento/modifica delle cards</h1>
         <form>
             <div class="mb-3">
               <label for="img" class="form-label">Immagine</label>
               <input type="text" class="form-control" id="img" placeholder="inserisci link immagine" required>
+            </div>
+            <div class="mb-3">
+              <label for="Tipo" class="form-label">Tipo</label>
+              <input type="text" class="form-control" id="Tipo" placeholder="inserisci tipologia"required>
             </div>
             <div class="mb-3">
               <label for="Titolo" class="form-label">Titolo</label>
@@ -31,14 +36,15 @@
               <input type="text" class="form-control" id="Descrizione" placeholder="inserisci descrizione"required>
             </div>
             <div class="mb-3">
-              <label for="brand" class="form-label">Brand</label>
+              <label for="brand" class="form-label">KM</label>
               <input type="text" class="form-control" id="brand" placeholder="inserisci brand"required>
             </div>
             <div class="mb-3">
-              <label for="prezzo" class="form-label">Prezzo</label>
+              <label for="prezzo" class="form-label">Prezzo €</label>
               <input type="text" class="form-control" id="prezzo" placeholder="inserisci prezzo"required>
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="button" class="btn btn-danger d-none" id="delete">Delete</button>
 
           </form>
     </div>
